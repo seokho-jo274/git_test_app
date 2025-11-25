@@ -57,7 +57,7 @@ Widget button(String type, IconData icon, String title) {
           decoration: BoxDecoration(color: Colors.blue),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Icon(icon), Text(title)],
+            children: [Icon(icon), SizedBox(width: 10), Text(title)],
           ),
         ),
       );
