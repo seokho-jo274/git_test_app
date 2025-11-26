@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
               Text(
                 'Alarm',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
