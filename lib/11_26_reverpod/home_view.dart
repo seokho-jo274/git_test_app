@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_git_test/11_26_reverpod/view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,63 +24,106 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Alarm',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      body: Consumer(
+        builder: (context, ref, child) {
+          final state = ref.watch(viewModelProvider);
 
-          Row(
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              clock('Add', Icons.add),
-              //
+              Text(
+                'Alarm',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              clock('A', state.isOns.aisOn, '7:00'),
+              SizedBox(height: 1),
+              clock('B', state.isOns.bisOn, '8:30'),
+              SizedBox(height: 1),
+              clock('C', state.isOns.cisOn, '8:00'),
             ],
-          ),
-          SizedBox(height: 5),
-          Row(
-            children: [
-              // 시간 오전 스위치
-            ],
-          ),
-          SizedBox(height: 5),
-          Row(
-            children: [
-              // 시간 오전 스위치
-            ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }
 
-  Widget clock(String name, IconData icon) {
-    return Consumer(
-      builder: (context, ref, child) {
-        final state = ref.watch(viewModelProvider);
-        return Container(
-          width: double.infinity,
-          height: 100,
-          decoration: BoxDecoration(color: Colors.black),
-          child: Column(
+  Widget clock(String name, bool isOns, String title) {
+    return Container(
+      width: double.infinity,
+      height: 100,
+      decoration: BoxDecoration(color: Colors.black),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Consumer(
-                builder: (context, ref, child) {
-                  ref.read(viewModelProvider.notifier);
-
-                  return Row(children: [Text(name), Text('AM'), Icon(icon)]);
-                },
+              Row(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 40,
+                        color: isOns ? CupertinoColors.white : Colors.grey,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'AM',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: isOns ? CupertinoColors.white : Colors.grey,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Text(state.title),
+
+              Row(
+                children: [
+                  Consumer(
+                    builder: (context, ref, child) {
+                      final viewModel = ref.read(viewModelProvider.notifier);
+
+                      return CupertinoSwitch(
+                        value: isOns,
+                        onChanged: (value) {
+                          viewModel.numbers(name);
+                        },
+
+                        thumbColor: CupertinoColors.white, // 버튼색
+                        activeTrackColor: isOns
+                            ? CupertinoColors
+                                  .activeBlue // 온 일떄
+                            : CupertinoColors.activeGreen, // 오프 일떄
+                      );
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
-        );
-      },
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              'Alarm',
+              style: TextStyle(
+                fontSize: 20,
+                color: isOns ? CupertinoColors.white : Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
