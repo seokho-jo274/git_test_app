@@ -3,19 +3,13 @@ import 'package:flutter_git_test/11_26_reverpod/home_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(ProviderScope(child: const MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+  runApp(
+    ProviderScope(
+      child: MaterialApp(
+        //
+        home: HomePage(),
+        debugShowCheckedModeBanner: false,
       ),
-      home: const HomeView(),
-    );
-  }
+    ),
+  );
 }

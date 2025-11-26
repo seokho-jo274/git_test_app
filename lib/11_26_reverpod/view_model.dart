@@ -3,28 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ViewModel extends Notifier<Model> {
   @override
-  //초기값
   Model build() {
-    return Model(0);
+    return Model('Alarm');
   }
 
-  void numbers(String type) {
-    var numberValue = state.count; // 👈
-    var newnumber = numberValue;
-    switch (type) {
-      case 'add':
-        newnumber++;
-
+  void add(String name) {
+    switch (name) {
+      case 'Add':
         break;
-      case 'remove':
-        newnumber--;
-        break;
-      case 'riset':
-        newnumber = 0;
+      case 'Remove':
         break;
     }
-    state = state.copyWith(count: newnumber);
   }
 }
 
-final homeprovider = NotifierProvider<ViewModel, Model>(() => ViewModel());
+final viewModelProvider = NotifierProvider<ViewModel, Model>(() => ViewModel());
