@@ -1,31 +1,51 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_git_test/new11_27/home_view.model.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 class TotalPage extends StatelessWidget {
   const TotalPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //1 가격
-        shope('subTotal', 0),
+    return Consumer(
+      builder: (context, ref, child) {
+        final state = ref.watch(homeprovider);
 
-        //2 세금
-        shope('shipping', 0),
+        // 달라지는것
+        //토탈
+        final total =
+            (state.countA * state.number1) + (state.countB * state.number2);
+        double totals = total.toDouble();
 
-        //3 총가격
-        shope('bagTotal', 0),
+        final toduty = totals + state.duty;
+        //총가격
 
-        //4 텍스트
-        // Container(child: Text('버튼')),
-      ],
+        //총가격
+
+        return Column(
+          children: [
+            //1 가격
+            shope('SubTotal', totals),
+
+            //2 세금
+            shope('Shipping', state.duty),
+
+            //3 총가격
+            shope('BagTotal', toduty),
+          ],
+        );
+      },
     );
   }
 }
 
-Widget shope(String title, int totals) {
-  return Container(
-    decoration: BoxDecoration(),
+Widget shope(String title, double totals) {
+  bool color = (title == 'BagTotal');
 
+  return Container(
+    margin: EdgeInsets.only(left: 20),
+    width: 350,
     height: 50,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,8 +53,20 @@ Widget shope(String title, int totals) {
         //왼쪽
         Text(title),
         // 오른쪽
-        Text('$totals'),
+        Text(
+          '\$${totals.toStringAsFixed(2)}',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: color ? 30 : 20,
+            color: color ? Colors.redAccent : Colors.black,
+          ),
+        ),
       ],
     ),
   );
 }
+
+ // 달라지는것
+  //토탈
+
+ 

@@ -10,71 +10,40 @@ class Home extends StatelessWidget {
   @override
   Widget build(Object context) {
     return Scaffold(
-      appBar: AppBar(title: Text('페이지')),
+      appBar: AppBar(
+        title: Text(
+          'Shopping Bag',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Consumer(
         builder: (context, ref, child) {
-          final state = ref.watch(homeprovider);
+          final stste = ref.watch(homeprovider);
+
           return Column(
             children: [
               // 1칸
-              Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                height: 150,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // 이미지
-                    images('https://picsum.photos/102/102'),
-                    Expanded(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // 텍스트
-                              Text(
-                                'Ctton queen T',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-
-                              // 가격
-                              Text(
-                                '\$${state.total.toStringAsFixed(2)}',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Row(
-                                children: [
-                                  // 버튼
-                                  bottons('더하기', Icons.add, '증가'),
-                                  SizedBox(width: 20),
-                                  // 숫자
-                                  Text(
-                                    '${state.count}',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                  SizedBox(width: 20),
-                                  // 버튼
-                                  bottons('뺴기', Icons.remove, '감소'),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Spacer(),
-                          // 사이즈
-                          sizes('S'),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              title(
+                'queen',
+                'https://picsum.photos/100/100',
+                'Ctton queen T',
+                'S',
+                '\$43.00',
+                '${stste.countA}',
+                'A',
               ),
-
+              SizedBox(height: 10),
+              title(
+                'shirt',
+                'https://picsum.photos/101/101',
+                'Greg T-shirt',
+                'M',
+                '\$41.00',
+                '${stste.countB}',
+                'B',
+              ),
               // 2칸
+              Spacer(),
               Row(
                 children: [
                   // 토탈
@@ -111,10 +80,86 @@ class Home extends StatelessWidget {
   // 로직
 
   //종류 => 갯수  =>  가격 , 세금  => 총가격
-
-  Widget bottons(String plus, IconData icon, String total) {
+  // view => title 2개늘리고 => 버튼 하나 를 2개로 더하고 뺀다
+  // 종류
+  Widget title(
+    String titlenumber,
+    String imagenumber,
+    String namenumber,
+    String sizenumber,
+    String totalnumber,
+    String countnumber,
+    String type,
+  ) {
     return Consumer(
       builder: (context, ref, child) {
+        ref.watch(homeprovider);
+        return Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 150,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 이미지
+              images(imagenumber),
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // 텍스트
+                        Text(
+                          namenumber,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+
+                        // 가격
+                        Text(
+                          totalnumber,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          children: [
+                            // 버튼
+                            bottons(type, Icons.add, '더하기'), //
+                            SizedBox(width: 20),
+                            // 숫자
+                            Text(
+                              countnumber,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            // 버튼
+                            bottons(type, Icons.remove, '빼기'), //
+                          ],
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    // 사이즈
+                    sizes(sizenumber),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // view => title 2개늘리고 => 버튼 하나 를 2개로 더하고 뺀다
+  Widget bottons(String type, IconData icon, String action) {
+    return Consumer(
+      builder: (context, ref, child) {
+        ref.watch(homeprovider);
+
         return Container(
           width: 40,
           height: 40,
@@ -125,7 +170,11 @@ class Home extends StatelessWidget {
 
           child: InkWell(
             onTap: () {
-              ref.read(homeprovider.notifier).bottons(plus, total);
+              ref
+                  .read(
+                    homeprovider.notifier,
+                  ) // 1개의 버튼에 2개 의 + -  버튼 에  2개의 카운터
+                  .bottons(type, action); // 한개의 버튼을 2개로 나누고 각각 움직인다
             },
             child: Icon(icon),
           ),
@@ -133,18 +182,9 @@ class Home extends StatelessWidget {
       },
     );
   }
+
   //
   // 변해야하는것
-  // 종류
-
-  // 가격
-  // Widget totals(double total) {
-  //   return Text('$total');
-  // }
-  // 세금
-  // 총가격
-  //
-  // 달라지는것
 
   //이미지
   Widget images(String image) {
@@ -160,7 +200,7 @@ class Home extends StatelessWidget {
   }
 
   //이름
-  Widget name(String name) {
+  Widget names(String name) {
     return Text(name);
   }
 
@@ -175,6 +215,20 @@ class Home extends StatelessWidget {
       child: Text(size, style: TextStyle(color: Colors.white, fontSize: 30)),
     );
   }
+
+  // 가격
+  Widget totals(double total) {
+    return Consumer(
+      builder: (context, ref, child) {
+        final state = ref.watch(homeprovider);
+        return Text('\$${state.total.toStringAsFixed(2)}');
+      },
+    );
+  }
+  // 세금
+  // 총가격
+  //
+  // 달라지는것
   //토탈
 
   //총가격
