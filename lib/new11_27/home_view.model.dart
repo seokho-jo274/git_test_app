@@ -14,12 +14,7 @@ class HomeViewModel extends Notifier<HomeModel> {
     );
   }
 
-  // plus Strig int  ints
   void bottons(String type, String action) {
-    // 1개의 버튼에 2개 의 + -  버튼 에 //  2개의 카운터
-    // 더 하기 빼기 를 가져 왔어 2개 값으로 나눠야지 String
-
-    // if ( plus == state.countA ? 'countA' : 'countB') {
     int newcountA = state.countA;
     int newcountB = state.countB;
     switch (type) {
@@ -29,8 +24,6 @@ class HomeViewModel extends Notifier<HomeModel> {
         } else if (action == '빼기') {
           newcountA--;
         }
-
-        // action == '더하기' ? newcountA++ : newcountA--;
         break;
       case 'B':
         if (action == '더하기') {
@@ -39,67 +32,12 @@ class HomeViewModel extends Notifier<HomeModel> {
           newcountB--;
         }
         break;
-      // view => title 2개늘리고 => 버튼 하나를 2개로 더하고 뺀다
-
-      // case '더하기': // 난 더하겠어
-      //   // 뭘
-      //   ints = newcountA == newcountA ? newcountA++ : newcountB++;
-
-      //   break;
-      // case '뺴기':
-      //   ints = newcountA == newcountA ? newcountA-- : newcountB--;
-      //   break;
-      // default:
-      //   -1;
     }
-    // double newtodel = state.total;
-    // switch (total) {
-    //   case '증가':
-    //     newtodel = state.number1.toDouble() * newcountA.toDouble();
-    //     break;
-    //   case '감소':
-    //     newtodel = state.number2.toDouble() * newcountA.toDouble();
-    //     break;
-    //   default:
-    //     -1;
-    // }
-    // state = state.copyWith(total: newtodel);
-
     state = state.copyWith(countA: newcountA);
     state = state.copyWith(countB: newcountB);
   }
 }
 
-// void bottonsB(String plus, total) {
-//   int newcountB = state.countB;
-//   switch (plus) {
-//     case '더하기':
-//       newcountB++;
-//       break;
-//     case '뺴기':
-//       newcountB--;
-//       break;
-//     default:
-//       -1;
-//   }
-
-//   double newtodel = state.total;
-//   switch (total) {
-//     case '증가':
-//       newtodel = state.number1.toDouble() * newcountB.toDouble();
-//       break;
-//     case '감소':
-//       newtodel = state.number2.toDouble() * newcountB.toDouble();
-//       break;
-//     default:
-//       -1;
-//   }
-//   state = state.copyWith(total: newtodel);
-
-//   state = state.copyWith(countB: newcountB);
-// }
-
-// 변해야하는것
 // 종류
 void title(String number) {
   switch (number) {
@@ -112,27 +50,6 @@ void title(String number) {
       break;
   }
 }
-
-// // 가격
-// void totals(String total) {
-//   var newtodel = state.total.toInt();
-//   switch (total) {
-//     case 'queen':
-//       newtodel = state.number1 * state.countA;
-//       break;
-//     case 'shirt':
-//       newtodel = state.number2 * state.countB;
-//       break;
-//     default:
-//       0;
-//   }
-//   state = state.copyWith(total: newtodel.toDouble());
-// }
-// }
-// 세금
-// 총가격
-//
-// 달라지는것
 
 //이미지
 void images(String image) {
@@ -176,10 +93,6 @@ void sizes(String size) {
       break;
   }
 }
-
-//토탈
-
-//총가격 ?
 
 final homeprovider = NotifierProvider<HomeViewModel, HomeModel>(
   HomeViewModel.new,

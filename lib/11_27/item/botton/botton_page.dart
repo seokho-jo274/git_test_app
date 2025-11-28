@@ -13,8 +13,6 @@ class BottonPage extends StatelessWidget {
           builder: (context, ref, child) {
             final state = ref.watch(bottonProvider);
 
-            // Text('${state.top}');
-
             return Row(
               children: [
                 number('더하기', Icons.add),
@@ -31,10 +29,6 @@ class BottonPage extends StatelessWidget {
     );
   }
 }
-
-// Widget image(double total) {
-//   return Text('$total');
-// }
 
 Widget number(String plus, IconData icon) {
   return Container(

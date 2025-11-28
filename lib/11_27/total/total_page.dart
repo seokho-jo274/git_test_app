@@ -12,16 +12,12 @@ class TotalPage extends StatelessWidget {
       builder: (context, ref, child) {
         final state = ref.watch(homeprovider);
 
-        // 달라지는것
         //토탈
         final total =
             (state.countA * state.number1) + (state.countB * state.number2);
         double totals = total.toDouble();
 
         final toduty = totals + state.duty;
-        //총가격
-
-        //총가격
 
         return Column(
           children: [
@@ -65,8 +61,3 @@ Widget shope(String title, double totals) {
     ),
   );
 }
-
- // 달라지는것
-  //토탈
-
- 

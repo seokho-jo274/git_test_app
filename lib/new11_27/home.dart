@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_git_test/11_27/total/total_page.dart';
-
 import 'package:flutter_git_test/new11_27/home_view.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -44,15 +43,7 @@ class Home extends StatelessWidget {
               ),
               // 2칸
               Spacer(),
-              Row(
-                children: [
-                  // 토탈
-                  // 가격
-                  TotalPage(),
-
-                  // 에러
-                ],
-              ),
+              Row(children: [TotalPage()]),
               // 3칸
               Container(
                 alignment: Alignment.center,
@@ -69,7 +60,6 @@ class Home extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
-              // 텍스트
             ],
           );
         },
@@ -78,7 +68,6 @@ class Home extends StatelessWidget {
   }
 
   // 로직
-
   //종류 => 갯수  =>  가격 , 세금  => 총가격
   // view => title 2개늘리고 => 버튼 하나 를 2개로 더하고 뺀다
   // 종류
@@ -154,7 +143,6 @@ class Home extends StatelessWidget {
     );
   }
 
-  // view => title 2개늘리고 => 버튼 하나 를 2개로 더하고 뺀다
   Widget bottons(String type, IconData icon, String action) {
     return Consumer(
       builder: (context, ref, child) {
@@ -170,11 +158,7 @@ class Home extends StatelessWidget {
 
           child: InkWell(
             onTap: () {
-              ref
-                  .read(
-                    homeprovider.notifier,
-                  ) // 1개의 버튼에 2개 의 + -  버튼 에  2개의 카운터
-                  .bottons(type, action); // 한개의 버튼을 2개로 나누고 각각 움직인다
+              ref.read(homeprovider.notifier).bottons(type, action);
             },
             child: Icon(icon),
           ),
@@ -182,9 +166,6 @@ class Home extends StatelessWidget {
       },
     );
   }
-
-  //
-  // 변해야하는것
 
   //이미지
   Widget images(String image) {
@@ -225,11 +206,4 @@ class Home extends StatelessWidget {
       },
     );
   }
-  // 세금
-  // 총가격
-  //
-  // 달라지는것
-  //토탈
-
-  //총가격
 }

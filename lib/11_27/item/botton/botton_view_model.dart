@@ -7,19 +7,6 @@ class BottonViewModel extends Notifier<BottonModel> {
     return BottonModel(count: 0);
   }
 
-  // void image(String total) {
-  //   var newtotal = state.count;
-  //   switch (total) {
-  //     case 'queen':
-  //       newtotal = state.count * state.number43;
-  //       break;
-  //     case 'shirt':
-  //       newtotal *= state.number41;
-  //       break;
-  //   }
-  //   state = state.copyWith(top: newtotal.toDouble());
-  // }
-
   void number(String plus) {
     var newcount = state.count;
     switch (plus) {
