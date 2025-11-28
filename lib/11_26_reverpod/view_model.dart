@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_git_test/11_26_reverpod/model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ViewModel extends Notifier<Models> {
   @override
   Models build() {
-    return Models(Model(aisOn: false, bisOn: false, cisOn: false));
+    return Models(state.isOns);
   }
 
-  void numbers(String name) {
+  void numbers(name) {
     switch (name) {
       case 'A':
         state = Models(state.isOns.copyWith(aisOn: !state.isOns.aisOn));
@@ -19,6 +18,19 @@ class ViewModel extends Notifier<Models> {
       case 'C':
         state = Models(state.isOns.copyWith(cisOn: !state.isOns.cisOn));
         break;
+    }
+  }
+
+  bool change(String isons) {
+    switch (isons) {
+      case 'A':
+        return state.isOns.aisOn;
+      case 'B':
+        return state.isOns.bisOn;
+      case 'C':
+        return state.isOns.cisOn;
+      default:
+        return false;
     }
   }
 }

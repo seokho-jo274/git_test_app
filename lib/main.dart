@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_git_test/11_26_reverpod/home_view.dart';
+
+import 'package:flutter_git_test/new11_27/home.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
@@ -7,7 +8,7 @@ void main() {
     ProviderScope(
       child: MaterialApp(
         //
-        home: HomePage(),
+        home: Home(),
         debugShowCheckedModeBanner: false,
       ),
     ),
