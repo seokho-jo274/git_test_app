@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_git_test/new11_27/home_view.model.dart';
-
+import 'package:flutter_git_test/11_27/total/total_view.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TotalPage extends StatelessWidget {
@@ -10,11 +8,11 @@ class TotalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final state = ref.watch(homeprovider);
+        final state = ref.watch(totalProvider);
 
         //토탈
         final total =
-            (state.countA * state.number1) + (state.countB * state.number2);
+            (state.countA * state.queen) + (state.countB * state.greg);
         double totals = total.toDouble();
 
         final toduty = totals + state.duty;
@@ -35,6 +33,7 @@ class TotalPage extends StatelessWidget {
     );
   }
 }
+
 
 Widget shope(String title, double totals) {
   bool color = (title == 'BagTotal');

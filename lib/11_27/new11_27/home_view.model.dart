@@ -1,4 +1,4 @@
-import 'package:flutter_git_test/new11_27/home_model.dart';
+import 'package:flutter_git_test/11_27/new11_27/home_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeViewModel extends Notifier<HomeModel> {
