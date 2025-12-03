@@ -1,0 +1,126 @@
+
+// 앱바 오른쪽 아이콘 2개  
+appbar aiction icon 2개
+// 검색 하트 
+
+// 바디 세로
+1칸 
+텍스트 Recipes
+2칸 4개 동그라미 아이콘 텍스트 
+컨테이너 안에 세로 로 아이콘 텍스트  
+3칸 리스트뷰 
+이미지 
+굵은 텍스트 
+-made coffee
+-made Burger
+-made Pizza
+
+연한 텍스트 2줄 
+
+ui
+
+반복문 /앱바 아이콘 / 바디 아이콘 / (이미지 ,텍스트 )
+
+icon (type)
+위젯 아이콘 스위치문 6개  
+image (imge text)
+(이미지 , 텍스트) 3개 
+
+
+데이터 X 
+
+변하는가 X
+
+아직 모르는것
+super.key = ListView, Hero 애니메이션, 상태 보존 같은 기능 쓸 때 key가 중요해짐
+
+SafeArea = 화면의 "위험한 영역"을 자동으로 피해서
+위젯을 안전한 위치에 배치해주는 위젯.
+
+
+(🔥 1) enum 선언
+enum CategoryType { All, coffee, burer, pizza }
+
+(🔥 2) 위젯 만들기
+Widget iconsEnum(CategoryType type) {
+  late IconData con;
+  late String text;
+
+  switch (type) {
+    case CategoryType.All:
+      con = Icons.house;
+      text = "All";
+      break;
+  }}
+
+ ////////////////////////////////////////////////
+
+      Widget iconsAuto(int index) {
+  final items = ['All', 'coffee', 'burer', 'pizza'];  // 외부 선언 필요 없음
+  final name = items[index];
+
+  late IconData con;
+
+  switch (name) {
+    case 'All':
+      con = Icons.house;
+      break;
+    case 'coffee':
+      con = Icons.local_cafe;
+      break;
+    case 'burer':
+      con = Icons.fastfood;
+      break;
+    default:
+      con = Icons.local_pizza;
+  }
+  return Column(
+    children: [
+      Icon(con),
+      Text(name),
+    ],
+  );
+}
+(🔥 2) 반복문
+dart
+코드 복사
+Column(
+  children: List.generate(4, (i) => iconsAuto(i)),
+)
+
+ ////////////////////////////////////////////////
+
+Widget iconsIndex(int i) {
+  late IconData con;
+  late String type;
+
+  switch (i) {
+    case 0:
+      con = Icons.house;
+      type = 'All';
+      break;
+    case 1:
+      con = Icons.local_cafe;
+      type = 'coffee';
+      break;
+    case 2:
+      con = Icons.fastfood;
+      type = 'burer';
+      break;
+    default:
+      con = Icons.local_pizza;
+      type = 'Pizza';
+  }
+
+  return Column(
+    children: [
+      Icon(con),
+      Text(type),
+    ],
+  );
+}
+(🔥 2) 반복문
+dart
+코드 복사
+Column(
+  children: List.generate(4, (i) => iconsIndex(i))),

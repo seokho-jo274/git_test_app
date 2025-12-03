@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_git_test/12_02/store/store_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
@@ -18,19 +17,10 @@ class StorePage extends StatelessWidget {
 }
 
 Widget number() {
-  return Consumer(
-    builder: (context, ref, child) {
-      final state = ref.watch(storeViewModelProvider1202);
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(state.first),
-          Text(state[1]),
-          Text(state[2]),
-          Text(state.last),
-        ],
-      );
-    },
+  List<String> list = ['woman', 'kids', 'shoes', 'Bag'];
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: [Text(list.first), Text(list[1]), Text(list[2]), Text(list.last)],
   );
 }
 
@@ -41,14 +31,14 @@ Widget images() {
         child: Image.network(
           width: double.infinity,
           fit: BoxFit.cover,
-          'http://picsum.photos/1500/1500',
+          'http://picsum.photos/100/100',
         ),
       ),
       SizedBox(height: 1),
       Expanded(
         child: Image.network(
           width: double.infinity,
-          'http://picsum.photos/1001/1001',
+          'http://picsum.photos/101/101',
           fit: BoxFit.cover,
         ),
       ),
