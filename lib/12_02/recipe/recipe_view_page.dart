@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(home: RecipeViewPage()));
+  runApp(
+    MaterialApp(home: RecipeViewPage(), debugShowCheckedModeBanner: false),
+  );
 }
 
 class RecipeViewPage extends StatelessWidget {
