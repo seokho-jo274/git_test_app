@@ -1,4 +1,4 @@
-import 'package:flutter_git_test/11_29/easy/a_type/a_model.dart';
+import 'package:flutter_git_test/12_03/easy/a_type/a_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AViewModel extends Notifier<AModel> {

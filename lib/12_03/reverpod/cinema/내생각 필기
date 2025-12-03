@@ -1,0 +1,62 @@
+
+
+
+뷰
+앱바 텍스트 
+
+바디
+1칸
+텍스트 
+2칸 반복 5
+컨테이너 10개 
+3칸
+텍스트 컨테이너 텍스트 컨테이너 
+4칸
+모달버튼
+텍스트 
+컨테이너 텍스트 
+
+  // 버튼 을 눌엇어 그럼 세로 index  가로  i
+
+로직 버튼을 누르면 해당 위치의 컨테이너 , 숫자 표시 
+
+데이터 
+원하는 좌석을 눌렀을떄 색이 달라지고 해당 좌석의 번호를 보여준다
+세로  columncount
+가로  rowcount
+데이터값 total
+
+변하지 안는가 컨테이너 , 반복 
+
+ ElevatedButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Container(
+                    height: 200,
+                    alignment: Alignment.center,
+                    child: Text("예매 하시겠습니까?"),
+                  );
+                },
+              );
+            },
+            child: Text("Book now"),
+          ),
+
+
+
+카운트 숫자 모델 
+버튼 시 함수 작동 ( 해당 더하거나 빼고) 기존걸 교체한다 
+
+
+
+컴슈머 감시 
+
+컨테이너 에 버튼 이 눌렸다 => 텍스트 표시 ,  해당 컨테이너 표시  
+함수를 실행 해서 바꾼다 ? 불 타입
+ 그럼 숫자는 어찌 아는가 
+
+                                'state.total == '' ? 좌석을 선택 해주세요! : state.total\n예매하시겠습니까!',
+                                
+      state.total == '' ? '좌석을 선택 해주세요!' : '${state.total}\n예매하시겠습니까!',

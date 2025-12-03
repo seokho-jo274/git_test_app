@@ -93,12 +93,15 @@ Widget texts(int text) {
     case 0:
       tex = 'made coffee';
       image = 'http://picsum.photos/300/300';
+      break;
     case 1:
       tex = 'made Burger';
       image = 'http://picsum.photos/301/301';
+      break;
     default:
       tex = 'made Pizza';
       image = 'http://picsum.photos/3002/302';
+      break;
   }
   return Column(
     children: [
@@ -127,7 +130,7 @@ Widget texts(int text) {
             ),
             Text(
               "Have you ever made your own $tex? Once you've tried a\n homemade $tex, you'll never go back.",
-              style: TextStyle(fontSize: 11),
+              style: TextStyle(fontSize: 11, color: Colors.grey),
             ),
           ],
         ),
