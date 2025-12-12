@@ -100,6 +100,7 @@ class CinemaPage extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
+                          actionsPadding: EdgeInsets.all(0),
                           actionsAlignment: MainAxisAlignment.spaceAround,
                           content: Consumer(
                             builder: (context, ref, child) {
@@ -116,7 +117,6 @@ class CinemaPage extends StatelessWidget {
                           ),
                           actions: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 button('확인', context),
                                 button('닫기', context),
@@ -180,10 +180,15 @@ class CinemaPage extends StatelessWidget {
 }
 
 Widget button(String type, BuildContext context) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.pop(context);
-    },
-    child: Text(type),
+  return Expanded(
+    child: GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Text(type, textAlign: TextAlign.center),
+      ),
+    ),
   );
 }
